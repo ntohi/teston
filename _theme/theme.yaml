@@ -1,15 +1,15 @@
-id: "test20151225"
-label: "test20151225"
+id: "gagaga"
+label: "gagaga"
 version: "1.0.0"
-author_link: "http://testsite-export.movabletype.io/"
-author_name: "testsite-export"
-description: "test20151225"
+author_link: "http://coolish-top.movabletype.io/"
+author_name: "Coolish"
+description: "gagaga"
 class: "blog"
 elements:
   blog_static_files:
     component: '~'
     data:
-      - empty
+      - fefe
       - images
       - js
     importer: blog_static_files
@@ -19,6 +19,14 @@ elements:
       base_path: templates
       templates:
         archive:
+          author_entry_listing:
+            filename: author_entry_listing.mtml
+            label: 投稿者
+            mappings:
+              author:
+                archive_type: Author
+                file_template: "%a/%i"
+                preferred: 1
           category_entry_listing:
             filename: category_entry_listing.mtml
             label: カテゴリ別記事リスト
@@ -26,6 +34,14 @@ elements:
               category:
                 archive_type: Category
                 file_template: "%-c/%i"
+                preferred: 1
+          monthly_entry_listing:
+            filename: monthly_entry_listing.mtml
+            label: 月別記事リスト
+            mappings:
+              monthly:
+                archive_type: Monthly
+                file_template: "%y/%m/%i"
                 preferred: 1
           yearly_entry_listing:
             filename: yearly_entry_listing.mtml
@@ -46,6 +62,16 @@ elements:
             label: インデックスページ
             outfile: index.html
             rebuild_me: 1
+          javascript:
+            filename: mt.js.mtml
+            label: JavaScript
+            outfile: mt.js
+            rebuild_me: 1
+          javascript_theme:
+            filename: mt-theme-scale2.js.mtml
+            label: JavaScript - テーマ
+            outfile: mt-theme-scale2.js
+            rebuild_me: 1
           news:
             filename: news.html.mtml
             label: ニュース TOP
@@ -55,6 +81,11 @@ elements:
             filename: styles.css.mtml
             label: スタイルシート
             outfile: styles.css
+            rebuild_me: 1
+          styles_ie:
+            filename: styles_ie.css.mtml
+            label: スタイルシート (IE8 以下用)
+            outfile: styles_ie.css
             rebuild_me: 1
         individual:
           entry:
@@ -66,6 +97,12 @@ elements:
                 file_template: "%y/%m/%-f"
                 preferred: 1
         module:
+          banner_footer:
+            filename: banner_footer.mtml
+            label: バナーフッター
+          banner_header:
+            filename: banner_header.mtml
+            label: バナーヘッダー
           blog-sidemenu:
             filename: blog-sidemenu.mtml
             label: blog-sidemenu
@@ -84,6 +121,9 @@ elements:
           entry-list:
             filename: entry-list.mtml
             label: entry-list
+          entry_summary:
+            filename: entry_summary.mtml
+            label: 記事の概要
           footer:
             filename: footer.mtml
             label: footer
@@ -93,5 +133,23 @@ elements:
           header_news:
             filename: header_news.mtml
             label: header_news
+          html_head:
+            filename: html_head.mtml
+            label: HTMLヘッダー
+          navigation:
+            filename: navigation.mtml
+            label: ナビゲーション
+          sidebar:
+            filename: sidebar.mtml
+            label: サイドバー
+        page:
+          page:
+            filename: page.mtml
+            label: ウェブページ
+            mappings:
+              page:
+                archive_type: Page
+                file_template: "%-c/%-f"
+                preferred: 1
     importer: template_set
 
