@@ -1,16 +1,15 @@
-id: "20160219"
-label: "20160219"
+id: "test20151225"
+label: "test20151225"
 version: "1.0.0"
-author_link: "http://testsite-bububu.movabletype.io/"
-author_name: "testsite-bububu"
-description: "20160219"
+author_link: "http://testsite-export.movabletype.io/"
+author_name: "testsite-export"
+description: "test20151225"
 class: "blog"
 elements:
   blog_static_files:
     component: '~'
     data:
-      - common
-      - css
+      - empty
       - images
       - js
     importer: blog_static_files
@@ -22,29 +21,29 @@ elements:
         archive:
           category_entry_listing:
             filename: category_entry_listing.mtml
-            label: カテゴリ別ニュース記事リスト
+            label: カテゴリ別記事リスト
             mappings:
               category:
                 archive_type: Category
                 file_template: "%-c/%i"
                 preferred: 1
-          monthly_entry_listing:
-            filename: monthly_entry_listing.mtml
-            label: 月別ニュース記事リスト
+          yearly_entry_listing:
+            filename: yearly_entry_listing.mtml
+            label: 年別ブログ記事リスト
             mappings:
-              monthly:
-                archive_type: Monthly
-                file_template: "%y/%m/%i"
+              yearly:
+                archive_type: Yearly
+                file_template: "%y/%i"
                 preferred: 1
         index:
-          feed_recent:
+          atom:
             filename: atom.xml.mtml
             label: 最新記事のフィード
             outfile: atom.xml
             rebuild_me: 1
-          main_index:
+          index_page:
             filename: index.html.mtml
-            label: メインページ
+            label: インデックスページ
             outfile: index.html
             rebuild_me: 1
           news:
@@ -67,6 +66,18 @@ elements:
                 file_template: "%y/%m/%-f"
                 preferred: 1
         module:
+          blog-sidemenu:
+            filename: blog-sidemenu.mtml
+            label: blog-sidemenu
+          common_bottom_js:
+            filename: common_bottom_js.mtml
+            label: common_bottom_js
+          common_head_js:
+            filename: common_head_js.mtml
+            label: common_head_js
+          common_stylesheet:
+            filename: common_stylesheet.mtml
+            label: common_stylesheet
           config:
             filename: config.mtml
             label: config
@@ -76,41 +87,11 @@ elements:
           footer:
             filename: footer.mtml
             label: footer
-          footer-script:
-            filename: footer-script.mtml
-            label: footer-script
-          header-menu:
-            filename: header-menu.mtml
-            label: header-menu
-          header-script:
-            filename: header-script.mtml
-            label: header-script
-          information:
-            filename: information.mtml
-            label: information
-          left-menu:
-            filename: left-menu.mtml
-            label: left-menu
-          news-sidebar:
-            filename: news-sidebar.mtml
-            label: news-sidebar
-          top_pages:
-            filename: top_pages.mtml
-            label: top-pages
-          twitter:
-            filename: twitter.mtml
-            label: twitter
-          webpage_sidebar:
-            filename: webpage_sidebar.mtml
-            label: webpage-sidebar
-        page:
-          webpage:
-            filename: webpage.mtml
-            label: ウェブページ
-            mappings:
-              page:
-                archive_type: Page
-                file_template: "%-c/%-f"
-                preferred: 1
+          header:
+            filename: header.mtml
+            label: header
+          header_news:
+            filename: header_news.mtml
+            label: header_news
     importer: template_set
 
