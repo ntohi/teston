@@ -1,15 +1,16 @@
-id: "gagaga"
-label: "gagaga"
+id: "20160219"
+label: "20160219"
 version: "1.0.0"
-author_link: "http://coolish-top.movabletype.io/"
-author_name: "Coolish"
-description: "gagaga"
+author_link: "http://testsite-bububu.movabletype.io/"
+author_name: "testsite-bububu"
+description: "20160219"
 class: "blog"
 elements:
   blog_static_files:
     component: '~'
     data:
-      - fefe
+      - common
+      - css
       - images
       - js
     importer: blog_static_files
@@ -19,17 +20,9 @@ elements:
       base_path: templates
       templates:
         archive:
-          author_entry_listing:
-            filename: author_entry_listing.mtml
-            label: 投稿者
-            mappings:
-              author:
-                archive_type: Author
-                file_template: "%a/%i"
-                preferred: 1
           category_entry_listing:
             filename: category_entry_listing.mtml
-            label: カテゴリ別記事リスト
+            label: カテゴリ別ニュース記事リスト
             mappings:
               category:
                 archive_type: Category
@@ -37,40 +30,22 @@ elements:
                 preferred: 1
           monthly_entry_listing:
             filename: monthly_entry_listing.mtml
-            label: 月別記事リスト
+            label: 月別ニュース記事リスト
             mappings:
               monthly:
                 archive_type: Monthly
                 file_template: "%y/%m/%i"
                 preferred: 1
-          yearly_entry_listing:
-            filename: yearly_entry_listing.mtml
-            label: 年別ブログ記事リスト
-            mappings:
-              yearly:
-                archive_type: Yearly
-                file_template: "%y/%i"
-                preferred: 1
         index:
-          atom:
+          feed_recent:
             filename: atom.xml.mtml
             label: 最新記事のフィード
             outfile: atom.xml
             rebuild_me: 1
-          index_page:
+          main_index:
             filename: index.html.mtml
-            label: インデックスページ
+            label: メインページ
             outfile: index.html
-            rebuild_me: 1
-          javascript:
-            filename: mt.js.mtml
-            label: JavaScript
-            outfile: mt.js
-            rebuild_me: 1
-          javascript_theme:
-            filename: mt-theme-scale2.js.mtml
-            label: JavaScript - テーマ
-            outfile: mt-theme-scale2.js
             rebuild_me: 1
           news:
             filename: news.html.mtml
@@ -82,11 +57,6 @@ elements:
             label: スタイルシート
             outfile: styles.css
             rebuild_me: 1
-          styles_ie:
-            filename: styles_ie.css.mtml
-            label: スタイルシート (IE8 以下用)
-            outfile: styles_ie.css
-            rebuild_me: 1
         individual:
           entry:
             filename: entry.mtml
@@ -97,54 +67,45 @@ elements:
                 file_template: "%y/%m/%-f"
                 preferred: 1
         module:
-          banner_footer:
-            filename: banner_footer.mtml
-            label: バナーフッター
-          banner_header:
-            filename: banner_header.mtml
-            label: バナーヘッダー
-          blog-sidemenu:
-            filename: blog-sidemenu.mtml
-            label: blog-sidemenu
-          common_bottom_js:
-            filename: common_bottom_js.mtml
-            label: common_bottom_js
-          common_head_js:
-            filename: common_head_js.mtml
-            label: common_head_js
-          common_stylesheet:
-            filename: common_stylesheet.mtml
-            label: common_stylesheet
           config:
             filename: config.mtml
             label: config
           entry-list:
             filename: entry-list.mtml
             label: entry-list
-          entry_summary:
-            filename: entry_summary.mtml
-            label: 記事の概要
           footer:
             filename: footer.mtml
             label: footer
-          header:
-            filename: header.mtml
-            label: header
-          header_news:
-            filename: header_news.mtml
-            label: header_news
-          html_head:
-            filename: html_head.mtml
-            label: HTMLヘッダー
-          navigation:
-            filename: navigation.mtml
-            label: ナビゲーション
-          sidebar:
-            filename: sidebar.mtml
-            label: サイドバー
+          footer-script:
+            filename: footer-script.mtml
+            label: footer-script
+          header-menu:
+            filename: header-menu.mtml
+            label: header-menu
+          header-script:
+            filename: header-script.mtml
+            label: header-script
+          information:
+            filename: information.mtml
+            label: information
+          left-menu:
+            filename: left-menu.mtml
+            label: left-menu
+          news-sidebar:
+            filename: news-sidebar.mtml
+            label: news-sidebar
+          top_pages:
+            filename: top_pages.mtml
+            label: top-pages
+          twitter:
+            filename: twitter.mtml
+            label: twitter
+          webpage_sidebar:
+            filename: webpage_sidebar.mtml
+            label: webpage-sidebar
         page:
-          page:
-            filename: page.mtml
+          webpage:
+            filename: webpage.mtml
             label: ウェブページ
             mappings:
               page:

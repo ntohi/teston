@@ -3,13 +3,15 @@
 <head>
 <meta charset="<$mt:PublishCharset$>">
 <title><$mt:BlogName encode_html="1"$></title>
+<meta name="viewport" content="width=device-width">
 <meta name="description" content="<$mt:BlogDescription remove_html="1" encede_html="1"$>">
 <meta name="keywords" content="<$mt:GetVar name="metakeywords"$>">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="shortcut icon" href="<$mt:BlogURL encode_html="1"$>images/favicon.ico">
 <link rel="start" href="<$mt:BlogURL encode_html="1"$>">
+<link rel="alternate" type="application/atom+xml" title="Recent Entries" href="<$mt:Link template="feed_recent"$>">
 <$mt:CanonicalLink$>
+
 <!-- Open Graph Protocol -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="<$mt:BlogLanguage setvar="blog_lang"$><mt:If name="blog_lang" eq="ja">ja_JP<mt:Else><$mt:Var name="blog_lang"$></mt:If>">
@@ -22,92 +24,93 @@
 <meta itemprop="description" content="<$mt:BlogDescription remove_html="1" encede_html="1"$>">
 <link itemprop="url" href="<$mt:BlogURL encode_html="1"$>">
 <link itemprop="image" href="<$mt:BlogURL encode_html="1"$>images/ogimage.png">
-<$mt:Include module="common_stylesheet"$>
-<$mt:Include module="common_head_js"$>
+<$mt:Include module="header-script"$>
+
 </head>
 
-<mt:SetVarBlock name="thispage">TOP</mt:SetVarBlock>
-<mt:SetVarBlock name="entrycount"><$mt:EntriesCount$></mt:SetVarBlock>
+<body class="main-index">
 
-<body id="sitetop">
-<script>
-(function() {
-  var id = location.hash.replace('#', '');
-  if (id) {
-    var div = document.createElement('div'),
-      a = document.createElement('a');
-    a.setAttribute('name', id);
-    div.appendChild(a);
-    document.write(div.innerHTML);
-  }
-})();
-</script>
-<$mt:Include module="header"$>
+<div class="off-canvas-wrap">
+<div class="inner-wrap">
 
-<section id="mainvisual" id="top">
-  <div class="container">
-    <h2><img src="<$mt:BlogURL encode_html="1"$>images/main-img.png" alt=""></h2>
-    <p id="main-text">MovableType.netデザインテーマ「Simple Product」のデモサイトです！<br />「Simple Product」は1ページ完結＋ニュース更新が可能なレスポンシブウェブデザインを採用したテーマです。</p>
-  </div>
-</section>
+<$mt:Include module="header-menu"$>
 
-<mt:Pages sort_order="ascend">
-<section class="webpages" id="<$mt:PageBasename$>">
-  <div class="container">
-    <h3><$mt:PageTitle encode_html="1"$></h3>
-    <div class="row">
-      <div class="col-sm-12">
-      <$mt:PageBody$>
-      <$mt:PageMore$>
-      </div>
-    </div>
-  </div>
-</section>
-</mt:Pages>
 
-<mt:If name="entrycount" gt="0">
-<section id="top-news">
-  <div class="container">
-    <h3>ニュース</h3>
-    <div class="row">
-    <mt:Entries lastn="4">
-      <a href="<$mt:EntryPermalink$>" class="col-sm-3">
-      <mt:EntryAssets type="image" sort_order="ascend" limit="1">
-        <figure><img src="<$mt:AssetThumbnailURL width="320"$>" alt="<$mt:EntryTitle encode_html="1"$>"></figure>
-      <mt:Else>
-        <figure class="noimage"><span>No image</span></mt:Unless></figure>
-      </mt:EntryAssets>
-        <div class="entry-detail">
-          <h1><$mt:EntryTitle encode_html="1"$></h1>
-          <p class="entry-excerpt"><$mt:EntryExcerpt$></p>
+
+<div class="row">
+  <div class="columns medium-12">
+    <div id="mainvisual">
+      <img src="<$mt:BlogURL encode_html="1"$>images/slide01.jpg" alt="" width="0" height="0">
+      <div class="slide">
+        <div class="inner">
+          <h3>メインイメージ</h3>
+          <p>メインイメージの説明</p>
         </div>
-      </a>
+      </div>
+   </div><!-- mainvisual -->
+  </div><!-- columns -->
+</div><!-- row -->
+
+<div class="row">
+  <div class="columns medium-8 large-9">
+  <$mt:Include module="top-pages"$>
+
+    <mt:Entries lastn="5" field:entry_pickup="1">
+      <mt:EntriesHeader>
+      <div class="group">
+        <h2><i class="fa fa-hand-o-right"></i> 重要なお知らせ</h2>
+      </mt:EntriesHeader>
+        <div class="entry">
+          <a href="<$mt:EntryPermalink$>">
+            <img src="<mt:If tag="CustomFieldValue" identifier="main_image_entry"><mt:CustomFieldAsset identifier="main_image_entry"><$mt:AssetThumbnailURL width="320"$></mt:CustomFieldAsset><mt:Else><mt:EntryAssets type="image" sort_order="ascend" limit="1"><$mt:AssetThumbnailURL width="320"$><mt:Else><$mt:BlogRelativeURL$>images/noimage-s.jpg</mt:EntryAssets></mt:If>" alt="<$mt:EntryTitle encode_html="1"$>">
+          </a>
+          <h3><$mt:EntryTitle encode_html="1"$></h3>
+          <p>
+            <$mt:EntryDate format="%Y.%m.%d"$><br />
+            <$mt:EntryExcerpt$>
+          </p>
+          <p class="text-right">
+            <a href="<$mt:EntryPermalink$>" class="button tiny radius">
+              <i class="fa fa-angle-double-right"></i> 続きを見る
+            </a>
+          </p>
+        </div>
+      <mt:EntriesFooter>
+      </div>
+      </mt:EntriesFooter>
     </mt:Entries>
-    </div>
-  </div>
-</section>
-</mt:If>
+
+    <div class="group">
+      <h2><i class="fa fa-newspaper-o"></i> ニュース</h2>
+        <div class="news">
+          <ul>
+          <mt:Entries unique="1" limit="5">
+            <li>
+            <a href="<$mt:EntryPermalink$>">
+            <time datetime="<$mt:EntryDate format="%Y.%m.%d"$>"><$mt:EntryDate format="%Y.%m.%d"$></time>
+            <p class="title"><$mt:EntryTitle encode_html="1"$></p>
+            </a>
+            </li>
+          </mt:Entries>
+          </ul>
+        </div>
+      <p class="text-right news-list"><a href="<$mt:BlogURL encode_html="1"$>news.html" class="newslist-button"><i class="fa fa-angle-double-right"></i> ニュース一覧</a></p>  
+        
+    </div><!-- group -->
+  </div><!-- columns -->
+
+  <div class="columns medium-4 large-3">
+    <$mt:Include module="information"$>
+  </div><!-- columns -->
+</div><!-- row -->
 
 <$mt:Include module="footer"$>
 
-<$mt:Include module="common_bottom_js"$>
-<script src="<$mt:BlogRelativeURL$>js/jquery.tile.min.js"></script>
-<script>
-$(window).load(function(){
-  $('#top-news .col-sm-3').tile(4);
-});
-$(function() {
-  var $body = $('body');
-  $('.navbar-scroll a').smoothScroll({
-    beforeScroll: function() {
-      $body.addClass('smooth-scroll-scrolling');
-    },
-    afterScroll: function() {
-      $body.removeClass('smooth-scroll-scrolling');
-    },
-  });
-});
-</script>
+<$mt:Include module="left-menu"$>
 
+</div><!-- inner-wrap -->
+</div><!-- off-canvas-wrap -->
+
+<$mt:Include module="footer-script"$>
 </body>
 </html>
