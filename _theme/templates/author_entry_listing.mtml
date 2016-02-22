@@ -1,0 +1,102 @@
+<!DOCTYPE html><$mt:Include module="config"$>
+<html lang="ja" itemscope itemtype="http://schema.org/WebPage">
+<head>
+<meta charset="<$mt:PublishCharset$>">
+<title><$mt:ArchiveTitle encode="html"$> | <$mt:BlogName encode_html="1"$></title>
+<meta name="description" content="<$mt:BlogName encode_html="1"$> - <$mt:ArchiveTitle encode="html"$>のアーカイブページです。">
+<meta name="keywords" content="<$mt:GetVar name="metakeywords"$>,<$mt:ArchiveTitle encode="html"$>">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="shortcut icon" href="<$mt:BlogURL encode_html="1"$>images/favicon.ico">
+<link rel="start" href="<$mt:BlogURL encode_html="1"$>">
+<link rel="alternate" type="application/atom+xml" title="Recent Entries" href="<$mt:Link template="feed_recent"$>">
+<$mt:CanonicalLink$>
+<!-- Open Graph Protocol -->
+<meta property="og:type" content="article">
+<meta property="og:locale" content="<$mt:BlogLanguage setvar="blog_lang"$><mt:If name="blog_lang" eq="ja">ja_JP<mt:Else><$mt:Var name="blog_lang"$></mt:If>">
+<meta property="og:title" content="<$mt:ArchiveTitle encode="html"$> - <$mt:BlogName encode_html="1"$>">
+<meta property="og:url" content="<$mt:ArchiveLink encode_html="1"$>">
+<meta property="og:description" content="<$mt:BlogName encode_html="1"$> - <$mt:ArchiveTitle encode="html"$>カテゴリのアーカイブページです。">
+<meta property="og:site_name" content="<$mt:BlogName encode_html="1"$>">
+<meta property="og:image" content="<$mt:BlogURL encode_html="1"$>images/ogimage.png">
+<!-- Microdata -->
+<meta itemprop="description" content="<$mt:BlogName encode_html="1"$> - <$mt:ArchiveTitle encode="html"$>のアーカイブページです。">
+<link itemprop="url" href="<$mt:ArchiveLink encode_html="1"$>">
+<link itemprop="image" href="<$mt:BlogURL encode_html="1"$>images/ogimage.png">
+<link rel="stylesheet" href="<$mt:BlogRelativeURL$>css/reset.css">
+<link rel="stylesheet" href="<$mt:BlogRelativeURL$>style.css">
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]--> 
+</head>
+
+<body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<$mt:Include module="header"$>
+
+<div id="content" class="group">
+  <main role="main">
+
+    <section class="entrylist">
+      <h1><$mt:ArchiveTitle encode="html"$> 記事一覧</h1>
+      <ul>
+      <mt:Entries paginate_by="$paginate">
+        <li>
+          <article class="group">
+            <div class="image">
+              <a href="<$mt:EntryPermalink$>"><img src="<mt:EntryAssets type="image" sort_order="ascend" limit="1"><$mt:AssetThumbnailURL width="240"$><mt:Else><$mt:BlogRelativeURL$>images/noimage-s.png</mt:EntryAssets>" alt="<$mt:EntryTitle encode_html="1"$>"></a>
+            </div>
+            <div class="detail">
+              <div class="meta">
+                <time><$mt:EntryDate format="%Y.%m.%d"$></time>
+                <ul class="categories">
+                <mt:EntryCategories>
+                  <li><a href="<$mt:CategoryArchiveLink$>"><$mt:CategoryLabel$></a></li>
+                </mt:EntryCategories>
+                </ul>
+              </div>
+              <h1><a href="<$mt:EntryPermalink$>"><$mt:EntryTitle encode_html="1"$></a></h1>
+              <p class="excerpt"><$mt:EntryExcerpt$></p>
+            </div>
+          </article>
+        </li>
+        <mt:EntriesFooter>
+        <nav class="page-navigation">
+          <ul class="page-navigation-list">
+            <mt:PaginationHasPrevious>
+            <li class="page-navigation-list-item page-navigation-prev"><a href="<$mt:PaginationPreviousURL$>" rel="prev">前の<$mt:GetVar name="paginate"$>件</a></li>
+            </mt:PaginationHasPrevious>
+            <mt:PaginationHasNext>
+            <li class="page-navigation-list-item page-navigation-next"><a href="<$mt:PaginationNextURL$>" rel="next">次の<$mt:GetVar name="paginate"$>件</a></li>
+            </mt:PaginationHasNext>
+          </ul>
+        </nav>
+        </mt:EntriesFooter>
+      </mt:Entries>
+      </ul>
+    </section>
+  </main>
+  <aside>
+<$mt:Include module="links"$>
+<$mt:Include module="banners"$>
+<$mt:Include module="facebook"$>
+<$mt:Include module="twitter"$>
+  </aside>
+</div><!-- #content -->
+
+<$mt:Include module="footer"$>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+</body>
+</html>

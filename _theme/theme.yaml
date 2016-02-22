@@ -1,9 +1,9 @@
-id: "20160219"
-label: "20160219"
+id: "MEDIA"
+label: "MEDIA"
 version: "1.0.0"
-author_link: "http://testsite-bububu.movabletype.io/"
-author_name: "testsite-bububu"
-description: "20160219"
+author_link: "http://testsite-20160222.movabletype.io/"
+author_name: "testsite-20160222"
+description: "MEDIA"
 class: "blog"
 elements:
   blog_static_files:
@@ -14,27 +14,39 @@ elements:
       - images
       - js
     importer: blog_static_files
+  custom_fields:
+    component: commercial
+    data:
+      entry_pickup:
+        default: 0
+        description: トップページ一番上にピックアップとして表示する場合にチェックを入れます。
+        name: ピックアップ
+        obj_type: post
+        options: ''
+        required: 0
+        type: checkbox
+    importer: custom_fields
   template_set:
     component: core
     data:
       base_path: templates
       templates:
         archive:
+          author_entry_listing:
+            filename: author_entry_listing.mtml
+            label: 投稿者別記事リスト
+            mappings:
+              author:
+                archive_type: Author
+                file_template: "%a/%i"
+                preferred: 1
           category_entry_listing:
             filename: category_entry_listing.mtml
-            label: カテゴリ別ニュース記事リスト
+            label: カテゴリ別記事リスト
             mappings:
               category:
                 archive_type: Category
                 file_template: "%-c/%i"
-                preferred: 1
-          monthly_entry_listing:
-            filename: monthly_entry_listing.mtml
-            label: 月別ニュース記事リスト
-            mappings:
-              monthly:
-                archive_type: Monthly
-                file_template: "%y/%m/%i"
                 preferred: 1
         index:
           feed_recent:
@@ -47,15 +59,10 @@ elements:
             label: メインページ
             outfile: index.html
             rebuild_me: 1
-          news:
-            filename: news.html.mtml
-            label: ニュース TOP
-            outfile: news.html
-            rebuild_me: 1
-          styles:
-            filename: styles.css.mtml
+          style:
+            filename: style.css.mtml
             label: スタイルシート
-            outfile: styles.css
+            outfile: style.css
             rebuild_me: 1
         individual:
           entry:
@@ -64,48 +71,36 @@ elements:
             mappings:
               individual:
                 archive_type: Individual
-                file_template: "%y/%m/%-f"
+                file_template: "%-c/%-f"
                 preferred: 1
         module:
+          banners:
+            filename: banners.mtml
+            label: banners
           config:
             filename: config.mtml
             label: config
-          entry-list:
-            filename: entry-list.mtml
-            label: entry-list
+          facebook:
+            filename: facebook.mtml
+            label: facebook
           footer:
             filename: footer.mtml
             label: footer
-          footer-script:
-            filename: footer-script.mtml
-            label: footer-script
-          header-menu:
-            filename: header-menu.mtml
-            label: header-menu
-          header-script:
-            filename: header-script.mtml
-            label: header-script
-          information:
-            filename: information.mtml
-            label: information
-          left-menu:
-            filename: left-menu.mtml
-            label: left-menu
-          news-sidebar:
-            filename: news-sidebar.mtml
-            label: news-sidebar
-          top_pages:
-            filename: top_pages.mtml
-            label: top-pages
+          header:
+            filename: header.mtml
+            label: header
+          links:
+            filename: links.mtml
+            label: links
           twitter:
             filename: twitter.mtml
             label: twitter
-          webpage_sidebar:
-            filename: webpage_sidebar.mtml
-            label: webpage-sidebar
+          zenback:
+            filename: zenback.mtml
+            label: zenback
         page:
-          webpage:
-            filename: webpage.mtml
+          page:
+            filename: page.mtml
             label: ウェブページ
             mappings:
               page:

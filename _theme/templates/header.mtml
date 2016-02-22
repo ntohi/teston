@@ -1,0 +1,28 @@
+<header class="group">
+  <div class="header-logo">
+    <h1><a href="<$mt:BlogRelativeURL$>" class="brand"><img src="<$mt:BlogRelativeURL$>images/logo.png" alt="<$mt:BlogName$>"></a></h1>
+    <p class="description"><$mt:BlogDescription$></p>
+  </div>
+  <nav>
+    <div class="header-search">
+    <script>
+      (function() {
+        var cx = '<$mt:GetVar name="googlesearch"$>';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//www.google.com/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
+    <ul role="navigation">
+    <mt:Categories>
+      <li><a href="<$mt:CategoryArchiveLink$>"><$mt:CategoryLabel$></a></li>
+    </mt:Categories>
+    </ul>
+  </nav>
+</header>

@@ -1,17 +1,15 @@
 <!DOCTYPE html><$mt:Include module="config"$>
-<html lang="<$mt:BlogLanguage$>" itemscope itemtype="http://schema.org/WebPage">
+<html lang="ja" itemscope itemtype="http://schema.org/WebPage">
 <head>
-<meta charset="<$mt:PublishCharset$>">
 <title><$mt:BlogName encode_html="1"$></title>
-<meta name="viewport" content="width=device-width">
+<meta charset="<$mt:PublishCharset$>">
 <meta name="description" content="<$mt:BlogDescription remove_html="1" encede_html="1"$>">
 <meta name="keywords" content="<$mt:GetVar name="metakeywords"$>">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="shortcut icon" href="<$mt:BlogURL encode_html="1"$>images/favicon.ico">
-<link rel="start" href="<$mt:BlogURL encode_html="1"$>">
 <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="<$mt:Link template="feed_recent"$>">
 <$mt:CanonicalLink$>
-
 <!-- Open Graph Protocol -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="<$mt:BlogLanguage setvar="blog_lang"$><mt:If name="blog_lang" eq="ja">ja_JP<mt:Else><$mt:Var name="blog_lang"$></mt:If>">
@@ -20,97 +18,120 @@
 <meta property="og:description" content="<$mt:BlogDescription remove_html="1" encede_html="1"$>">
 <meta property="og:site_name" content="<$mt:BlogName encode_html="1"$>">
 <meta property="og:image" content="<$mt:BlogURL encode_html="1"$>images/ogimage.png">
+
 <!-- Microdata -->
 <meta itemprop="description" content="<$mt:BlogDescription remove_html="1" encede_html="1"$>">
 <link itemprop="url" href="<$mt:BlogURL encode_html="1"$>">
 <link itemprop="image" href="<$mt:BlogURL encode_html="1"$>images/ogimage.png">
-<$mt:Include module="header-script"$>
-
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/jquery.bxslider.min.css">
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]--> 
 </head>
 
-<body class="main-index">
+<body>
 
-<div class="off-canvas-wrap">
-<div class="inner-wrap">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
-<$mt:Include module="header-menu"$>
+<$mt:Include module="header"$>
 
-
-
-<div class="row">
-  <div class="columns medium-12">
-    <div id="mainvisual">
-      <img src="<$mt:BlogURL encode_html="1"$>images/slide01.jpg" alt="" width="0" height="0">
-      <div class="slide">
-        <div class="inner">
-          <h3>メインイメージ</h3>
-          <p>メインイメージの説明</p>
-        </div>
-      </div>
-   </div><!-- mainvisual -->
-  </div><!-- columns -->
-</div><!-- row -->
-
-<div class="row">
-  <div class="columns medium-8 large-9">
-  <$mt:Include module="top-pages"$>
-
+<div id="content" class="group">
+  <main role="main">
     <mt:Entries lastn="5" field:entry_pickup="1">
       <mt:EntriesHeader>
-      <div class="group">
-        <h2><i class="fa fa-hand-o-right"></i> 重要なお知らせ</h2>
+      <section id="top-pickup">
+        <ul class="slider">
       </mt:EntriesHeader>
-        <div class="entry">
-          <a href="<$mt:EntryPermalink$>">
-            <img src="<mt:If tag="CustomFieldValue" identifier="main_image_entry"><mt:CustomFieldAsset identifier="main_image_entry"><$mt:AssetThumbnailURL width="320"$></mt:CustomFieldAsset><mt:Else><mt:EntryAssets type="image" sort_order="ascend" limit="1"><$mt:AssetThumbnailURL width="320"$><mt:Else><$mt:BlogRelativeURL$>images/noimage-s.jpg</mt:EntryAssets></mt:If>" alt="<$mt:EntryTitle encode_html="1"$>">
-          </a>
-          <h3><$mt:EntryTitle encode_html="1"$></h3>
-          <p>
-            <$mt:EntryDate format="%Y.%m.%d"$><br />
-            <$mt:EntryExcerpt$>
-          </p>
-          <p class="text-right">
-            <a href="<$mt:EntryPermalink$>" class="button tiny radius">
-              <i class="fa fa-angle-double-right"></i> 続きを見る
-            </a>
-          </p>
-        </div>
+          <li>
+            <article>
+              <div class="image">
+                <a href="<$mt:EntryPermalink$>"><img src="<mt:EntryAssets type="image" sort_order="ascend" limit="1"><$mt:AssetThumbnailURL width="320"$><mt:Else><$mt:BlogRelativeURL$>images/noimage-s.png</mt:EntryAssets>" alt="<$mt:EntryTitle encode_html="1"$>"></a>
+              </div>
+              <div class="detail">
+                <div class="meta">
+                  <time><$mt:EntryDate format="%Y.%m.%d"$></time>
+                  <ul class="categories">
+                  <mt:EntryCategories>
+                    <li><a href="<$mt:CategoryArchiveLink$>"><$mt:CategoryLabel encode_html="1"$></a></li>
+                  </mt:EntryCategories>
+                  </ul>
+                </div>
+                <h1><a href="<$mt:EntryPermalink$>"><$mt:EntryTitle encode_html="1"$></a></h1>
+                <p class="excerpt"><$mt:EntryExcerpt words="80" trim_to="80"$></p>
+              </div>
+            </article>
+          </li>
       <mt:EntriesFooter>
-      </div>
+        </ul>
+      </section>
       </mt:EntriesFooter>
     </mt:Entries>
 
-    <div class="group">
-      <h2><i class="fa fa-newspaper-o"></i> ニュース</h2>
-        <div class="news">
-          <ul>
-          <mt:Entries unique="1" limit="5">
-            <li>
-            <a href="<$mt:EntryPermalink$>">
-            <time datetime="<$mt:EntryDate format="%Y.%m.%d"$>"><$mt:EntryDate format="%Y.%m.%d"$></time>
-            <p class="title"><$mt:EntryTitle encode_html="1"$></p>
-            </a>
-            </li>
-          </mt:Entries>
+    <section class="entrylist">
+      <h1>最新記事</h1>
+      <ul>
+      <mt:Entries paginate_by="$paginate" unique="1">
+        <li>
+          <article class="group">
+            <div class="image">
+              <a href="<$mt:EntryPermalink$>"><img src="<mt:EntryAssets type="image" sort_order="ascend" limit="1"><$mt:AssetThumbnailURL width="240"$><mt:Else><$mt:BlogRelativeURL$>images/noimage-s.png</mt:EntryAssets>" alt="<$mt:EntryTitle encode_html="1"$>"></a>
+            </div>
+            <div class="detail">
+              <div class="meta">
+                <time><$mt:EntryDate format="%Y.%m.%d"$></time>
+                <ul class="categories">
+                <mt:EntryCategories>
+                  <li><a href="<$mt:CategoryArchiveLink$>"><$mt:CategoryLabel$></a></li>
+                </mt:EntryCategories>
+                </ul>
+              </div>
+              <h1><a href="<$mt:EntryPermalink$>"><$mt:EntryTitle encode_html="1"$></a></h1>
+              <p class="excerpt"><$mt:EntryExcerpt words="80" trim_to="80"$></p>
+            </div>
+          </article>
+        </li>
+        <mt:EntriesFooter>
+        <nav class="page-navigation">
+          <ul class="page-navigation-list">
+            <mt:PaginationHasPrevious>
+            <li class="page-navigation-list-item page-navigation-prev"><a href="<$mt:PaginationPreviousURL$>" rel="prev">前の<$mt:GetVar name="paginate"$>件</a></li>
+            </mt:PaginationHasPrevious>
+            <mt:PaginationHasNext>
+            <li class="page-navigation-list-item page-navigation-next"><a href="<$mt:PaginationNextURL$>" rel="next">次の<$mt:GetVar name="paginate"$>件</a></li>
+            </mt:PaginationHasNext>
           </ul>
-        </div>
-      <p class="text-right news-list"><a href="<$mt:BlogURL encode_html="1"$>news.html" class="newslist-button"><i class="fa fa-angle-double-right"></i> ニュース一覧</a></p>  
-        
-    </div><!-- group -->
-  </div><!-- columns -->
-
-  <div class="columns medium-4 large-3">
-    <$mt:Include module="information"$>
-  </div><!-- columns -->
-</div><!-- row -->
+        </nav>
+        </mt:EntriesFooter>
+      </mt:Entries>
+      </ul>
+    </section>
+  </main>
+  <aside>
+<$mt:Include module="links"$>
+<$mt:Include module="banners"$>
+<$mt:Include module="facebook"$>
+<$mt:Include module="twitter"$>
+  </aside>
+</div><!-- #content -->
 
 <$mt:Include module="footer"$>
 
-<$mt:Include module="left-menu"$>
-
-</div><!-- inner-wrap -->
-</div><!-- off-canvas-wrap -->
-
-<$mt:Include module="footer-script"$>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="js/jquery.bxslider.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.slider').bxSlider();
+});
+</script>
 </body>
 </html>
